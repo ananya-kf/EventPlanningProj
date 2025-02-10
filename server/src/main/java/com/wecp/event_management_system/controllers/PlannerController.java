@@ -16,6 +16,8 @@ import java.util.List;
 @RequestMapping("/api/planner")
 public class PlannerController {
 
+    // Planner Controller 
+    // ansh changed
     @PostMapping("/event")
     public ResponseEntity<Event> createEvent(@RequestParam Long plannerId, @RequestBody Event event) {
        // create event and return the created event with status code 201 created
