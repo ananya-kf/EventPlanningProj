@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { PlannerService } from '../../services/planner.service';
 import { Event } from '../../models/event.model';
@@ -5,8 +6,7 @@ import { Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ClientService } from '../../services/client.service';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { HttpClientModule } from '@angular/common/http';
 import { StaffService } from '../../services/staff.service';
 import { User } from '../../models/user.model';
 
@@ -36,57 +36,115 @@ export class PlannerDashboardComponent implements OnInit {
   selectedTask: Task | null = null;
 
   // Injecting the necessary services and router
-  constructor(private plannerService: PlannerService, private staffService: StaffService, private router: Router) { }
+  constructor(
+    private plannerService: PlannerService,
+    private staffService: StaffService,
+    private router: Router
+  ) {}
 
-  // Lifecycle hook to fetch initial data when the component is initialized
-  ngOnInit() {
-    this.getEvents();
-    this.getTasks();
-    this.getStaff();
-  }
+// Lifecycle hook to fetch initial data when the component is initialized
+ngOnInit() {
+this.getEvents();
+this.getTasks();
+this.getStaff();
+}
 
-  // Method to create a new event
-  createEvent() {
-    // Call plannerService to create the event and handle response
-  }
+// Method to create a new event
+createEvent() {
+this.plannerService.createEvent(this.newEvent).subscribe(response => {
+this.getEvents();
+this.newEvent = { title: '', date: '', location: '', description: '', status: '' };
+}, error => {
+console.error('Error creating event:', error);
+});
+}
 
-  // Method to update an existing event
-  updateEvent() {
-    // Update selected event and call plannerService, handle response
+// Method to update an existing event
+updateEvent() {
+  if (this.selectedEvent && this.selectedEvent.id) {
+    this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(response => {
+      this.getEvents();
+      this.selectedEvent = null;
+    }, error => {
+      console.error('Error updating event:', error);
+    });
+  } else {
+    console.error('Selected event ID is undefined or invalid');
   }
+}
 
-  // Method to fetch all events
-  getEvents() {
-    // Call plannerService to get the events and handle response
-  }
 
-  // Method to create a new task
-  createTask() {
-    // Call plannerService to create the task and handle response
-  }
+// // Method to update an existing event
+// updateEvent() {
+// if (this.selectedEvent) {
+// this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(response => {
+// this.getEvents();
+// this.selectedEvent = null;
+// }, error => {
+// console.error('Error updating event:', error);
+// });
+// }
+// }
 
-  // Method to fetch all tasks
-  getTasks() {
-    // Call plannerService to get the tasks and handle response
-  }
+// Method to fetch all events
+getEvents() {
+this.plannerService.getEvents().subscribe(events => {
+this.events = events;
+}, error => {
+console.error('Error fetching events:', error);
+});
+}
 
-  // Method to set up the selected event for editing
-  editEvent(event: Event) {
-    // Set selected event and toggle visibility
-  }
+// Method to create a new task
+createTask() {
+this.plannerService.createTask(this.newTask).subscribe(response => {
+this.getTasks();
+this.newTask = { description: '', status: '', assignedStaff: '' };
+}, error => {
+console.error('Error creating task:', error);
+});
+}
 
-  // Method to fetch all staff members
-  getStaff() {
-    // Call staffService to get the staff members and handle response
-  }
+// Method to fetch all tasks
+getTasks() {
+this.plannerService.getTasks().subscribe(tasks => {
+this.tasks = tasks;
+}, error => {
+console.error('Error fetching tasks:', error);
+});
+}
 
-  // Method to log out the user and navigate to the login page
-  logout() {
-    // Clear token and userId from local storage and navigate to login
-  }
+// Method to set up the selected event for editing
+editEvent(event: Event) {
+this.selectedEvent = event;
+this.showEvents = true;
+this.showTasks = false;
+}
 
-  // Method to navigate between managing events and tasks
-  navigateTo(route: string) {
-    // Toggle visibility of events and tasks based on the route
-  }
+// Method to fetch all staff members
+getStaff() {
+this.staffService.getStaff().subscribe(staffs => {
+this.staffs = staffs;
+}, error => {
+console.error('Error fetching staff:', error);
+});
+}
+
+// Method to log out the user and navigate to the login page
+logout() {
+localStorage.removeItem('token');
+localStorage.removeItem('userId');
+this.router.navigate(['/login']);
+}
+
+// Method to navigate between managing events and tasks
+navigateTo(route: string) {
+if (route === 'events') {
+this.showEvents = true;
+this.showTasks = false;
+} else if (route === 'tasks') {
+this.showEvents = false;
+this.showTasks = true;
+}
+}
 }

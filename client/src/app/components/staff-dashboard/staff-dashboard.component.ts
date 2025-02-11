@@ -35,6 +35,15 @@ export class StaffDashboardComponent implements OnInit {
   // Method to fetch tasks assigned to the staff
   getTasks() {
     if (this.staffId) {
+      this.staffService.getTasks(this.staffId).subscribe(
+        (tasks: Task[]) => {
+            this.tasks =tasks;
+        },
+        (error) => {
+          console.error('Error fetching tasks', error);
+        }
+        );
+
       // Call staffService to get the tasks for the current staff member and handle response
     } else {
       console.error('Staff ID is not available'); // Log an error if the staff ID is not available
@@ -44,5 +53,15 @@ export class StaffDashboardComponent implements OnInit {
   // Method to update the status of a specific task
   updateTaskStatus(taskId: any, status: string) {
     // Call staffService to update the status of the specified task and handle response
+    this.staffService.updateTaskStatus(taskId, status).subscribe(
+      (response) => {
+        console.log('Task status updates', response);
+        this.getTasks();
+      },
+      (error) => {
+        console.error('Error updating task status', error);
+      }
+    );
+    
   }
 }

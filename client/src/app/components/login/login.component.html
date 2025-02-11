@@ -1,0 +1,32 @@
+<div class="login-container">
+<div>
+  <H1>login</H1>
+</div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+   <div>
+   <p><Strong><h3>Event Managment System</h3></Strong></p>
+   </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input id="username" type="text" formControlName="username" />
+      <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="error">
+        <div *ngIf="loginForm.get('username')?.hasError('required')">Username is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password" />
+      <div *ngIf="loginForm.get('password')?.dirty ||loginForm.get('password')?.touched" class="error">
+        <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+        <div *ngIf="loginForm.get('password')?.hasError('pattern')">Password is invalid</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <button type="button" (click)="goToRegister()">Register</button>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>
