@@ -6,12 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routes';
 import { ClientDashboardComponent } from './components/client-dashboard/client-dashboard.component';
 import { LoginComponent } from './components/login/login.component';
-import { PlannerDashboardComponent } from './components/planner-dashboard/planner-dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
-import { StaffDashboardComponent } from './components/staff-dashboard/staff-dashboard.component';
 import { httpClientProviders } from './http-client-providers';
-// import { PlannerDashboardComponent } from './components/planner-dashboard/planner-dashboard.component';
-// import { ClientDashboardComponent } from './components/client-dashboard/client-dashboard.component';
+import { StaffDashboardComponent } from './components/staff-dashboard/staff-dashboard.component';
+import { PlannerDashboardComponent } from './components/planner-dashboard/planner-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +17,6 @@ import { httpClientProviders } from './http-client-providers';
   ],
   imports: [
     BrowserModule,
-    //BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

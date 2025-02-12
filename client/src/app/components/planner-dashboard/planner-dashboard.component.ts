@@ -6,145 +6,144 @@ import { Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { ClientService } from '../../services/client.service';
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+
 import { StaffService } from '../../services/staff.service';
 import { User } from '../../models/user.model';
-
 @Component({
   selector: 'app-planner-dashboard',
   templateUrl: './planner-dashboard.component.html',
   styleUrls: ['./planner-dashboard.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule]
+  imports: [CommonModule, FormsModule,HttpClientModule]
 })
+
 export class PlannerDashboardComponent implements OnInit {
-  // Flags to control the visibility of events and tasks
+
+
   showEvents: boolean = true;
   showTasks: boolean = false;
-
-  // Arrays to hold events, tasks, and staff data
   events: Event[] = [];
   tasks: Task[] = [];
-  staffs: User[] = [];
-
-  // New event and task objects for form handling
-  newEvent: Event = { title: '', date: '', location: '', description: '', status: '' };
-  newTask: Task = { description: '', status: '', assignedStaff: '' };
-
-  // Objects for selected event and task for editing purposes
+  staffs: User[]=[];
+  newEvent: Event = {
+    title: '',
+    date: '',
+    location: '',
+    description: '',
+    status: ''
+  };
+  newTask: Task = {
+    description: '',
+    status: '',
+    assignedStaff:''
+  };
   selectedEvent: Event | null = null;
-  selectedTask: Task | null = null;
+  selectedTask : Task| null = null;
+  constructor(private plannerService: PlannerService,private staffService:StaffService, private router: Router) { }
 
-  // Injecting the necessary services and router
-  constructor(
-    private plannerService: PlannerService,
-    private staffService: StaffService,
-    private router: Router
-  ) {}
-
-// Lifecycle hook to fetch initial data when the component is initialized
-ngOnInit() {
-this.getEvents();
-this.getTasks();
-this.getStaff();
-}
-
-// Method to create a new event
-createEvent() {
-this.plannerService.createEvent(this.newEvent).subscribe(response => {
-this.getEvents();
-this.newEvent = { title: '', date: '', location: '', description: '', status: '' };
-}, error => {
-console.error('Error creating event:', error);
-});
-}
-
-// Method to update an existing event
-updateEvent() {
-  if (this.selectedEvent && this.selectedEvent.id) {
-    this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(response => {
-      this.getEvents();
-      this.selectedEvent = null;
-    }, error => {
-      console.error('Error updating event:', error);
-    });
-  } else {
-    console.error('Selected event ID is undefined or invalid');
+  ngOnInit() {
+    this.getEvents();
+    this.getTasks();
+    this.getStaff();
   }
-}
 
+  createEvent() {
+    this.plannerService.createEvent(this.newEvent).subscribe(
+      response => {
+        console.log('Event created successfully:', response);
+        this.getEvents();
+        this.newEvent = { title: '', date: '', location: '', description: '', status: '' };
+      },
+      error => {
+        console.error('Event creation error:', error);
+      }
+    );
+  }
 
-// // Method to update an existing event
-// updateEvent() {
-// if (this.selectedEvent) {
-// this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(response => {
-// this.getEvents();
-// this.selectedEvent = null;
-// }, error => {
-// console.error('Error updating event:', error);
-// });
-// }
-// }
+  updateEvent() {
+    if (this.selectedEvent && this.selectedEvent.id) {
+      this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(
+ 
+ response => {
+ console.log('Event updated successfully:', response);
+ this.getEvents();
+ this.selectedEvent = null;
+ },
+ error => {
+ console.error('Event update error:', error);
+ }
+ );
+ } else {
+ console.error('No event selected or event id is missing.');
+ }
+ }
 
-// Method to fetch all events
-getEvents() {
-this.plannerService.getEvents().subscribe(events => {
-this.events = events;
-}, error => {
-console.error('Error fetching events:', error);
-});
-}
+ getEvents() {
+ this.plannerService.getEvents().subscribe(
+ response => {
+ this.events = response;
+ },
+ error => {
+ console.error('Error fetching events:', error);
+ }
+ );
+ }
 
-// Method to create a new task
-createTask() {
-this.plannerService.createTask(this.newTask).subscribe(response => {
-this.getTasks();
-this.newTask = { description: '', status: '', assignedStaff: '' };
-}, error => {
-console.error('Error creating task:', error);
-});
-}
+ createTask() {
+ this.plannerService.createTask(this.newTask).subscribe(
+ response => {
+ console.log('Task created successfully:', response);
+ this.getTasks();
+ this.newTask = { description: '', status: '',assignedStaff:'' };
+ },
+ error => {
+ console.error('Task creation error:', error);
+ }
+ );
+ }
 
-// Method to fetch all tasks
-getTasks() {
-this.plannerService.getTasks().subscribe(tasks => {
-this.tasks = tasks;
-}, error => {
-console.error('Error fetching tasks:', error);
-});
-}
+ getTasks() {
+ this.plannerService.getTasks().subscribe(
+ response => {
+ this.tasks = response;
+ },
+ error => {
+ console.error('Error fetching tasks:', error);
+ }
+ );
+ }
 
-// Method to set up the selected event for editing
-editEvent(event: Event) {
-this.selectedEvent = event;
-this.showEvents = true;
-this.showTasks = false;
-}
+ editEvent(event: Event) {
+ this.selectedEvent = { ...event };
+ this.showEvents = true;
+ this.showTasks = false;
+ }
+ getStaff() {
+ this.staffService.getStaff().subscribe(
+ response => {
+ this.staffs = response;
+ },
+ error => {
+ console.error('Error fetching events:', error);
+ }
+ );
 
-// Method to fetch all staff members
-getStaff() {
-this.staffService.getStaff().subscribe(staffs => {
-this.staffs = staffs;
-}, error => {
-console.error('Error fetching staff:', error);
-});
-}
+ }
+ logout() {
+ localStorage.setItem('token', '');
+ localStorage.setItem('userId', '');
+ this.router.navigate(['/login']);
+ }
 
-// Method to log out the user and navigate to the login page
-logout() {
-localStorage.removeItem('token');
-localStorage.removeItem('userId');
-this.router.navigate(['/login']);
-}
-
-// Method to navigate between managing events and tasks
-navigateTo(route: string) {
-if (route === 'events') {
-this.showEvents = true;
-this.showTasks = false;
-} else if (route === 'tasks') {
-this.showEvents = false;
-this.showTasks = true;
-}
-}
+ navigateTo(route: string) {
+ if (route === 'events') {
+ this.showEvents = true;
+ this.showTasks = false;
+ } else if (route === 'tasks') {
+ this.showEvents = false;
+ this.showTasks = true;
+ }
+ }
 }
