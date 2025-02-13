@@ -62,7 +62,7 @@ export class PlannerDashboardComponent implements OnInit {
       }
     );
   }
-
+//Changed
   updateEvent() {
     if (this.selectedEvent && this.selectedEvent.id) {
       this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(
