@@ -1,110 +1,165 @@
-<div class="container">
-  <div class="header">
-    <nav>
-      <h5>Planner Dashboard</h5>
-      <a href="#"  (click)="navigateTo('events')">Manage Events</a>
-      <a href="#" (click)="navigateTo('tasks')">Manage Tasks</a>
-      <a href="#" (click)="logout()">Logout</a>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Planner Dashboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateTo('manage-events')">Manage Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateTo('manage-tasks')">Manage Tasks</a>
+      </li>
+    </ul>
+    <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
   </div>
-  
-  <div *ngIf="showEvents">
-    <h2>Events</h2>
+</nav>
 
-    <form (ngSubmit)="createEvent()">
-      <h3>Create New Event</h3>
-      <label>
-        Title:
-        <input [(ngModel)]="newEvent.title" name="title" required>
-      </label><br>
-      <label>
-        Date:
-        <input [(ngModel)]="newEvent.date" name="date" required>
-      </label><br>
-      <label>
-        Location:
-        <input [(ngModel)]="newEvent.location" name="location" required>
-      </label><br>
-      <label>
-        Description:
-        <textarea [(ngModel)]="newEvent.description" name="description" required></textarea>
-      </label><br>
-      <label>
-        Status:
-        <select [(ngModel)]="newEvent.status" name="status" required>
-          <option value="Pending">Pending</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </label><br>
-      <button type="submit">Create Event</button>
+<div class="container mt-5">
+  <div *ngIf="showEvents">
+    <h2 class="text-center mb-4">Manage Events</h2>
+
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Create Event</h3>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="createEvent()">
+          <div class="form-group">
+            <label>Title:</label>
+            <input [(ngModel)]="newEvent.title" name="title" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Date:</label>
+            <input [(ngModel)]="newEvent.date" name="date" type="datetime-local" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Location:</label>
+            <input [(ngModel)]="newEvent.location" name="location" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Description:</label>
+            <input [(ngModel)]="newEvent.description" name="description" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Status:</label>
+            <input [(ngModel)]="newEvent.status" name="status" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Create Event</button>
+        </form>
+      </div>
+    </div>
+    <h3 *ngIf="selectedEvent">Edit Event</h3>
+    <form *ngIf="selectedEvent" (ngSubmit)="updateEvent()">
+      <div class="form-group">
+        <label>Title:</label>
+        <input [(ngModel)]="selectedEvent.title" name="title" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Date:</label>
+        <input [(ngModel)]="selectedEvent.date" name="date" type="datetime-local" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Location:</label>
+        <input [(ngModel)]="selectedEvent.location" name="location" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <input [(ngModel)]="selectedEvent.description" name="description" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label>Status:</label>
+        <input [(ngModel)]="selectedEvent.status" name="status" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-warning">Update Event</button>
     </form>
-    
-    <h2>Event List</h2>   
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Date</th>
-          <th>Location</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let event of events">
-          <td>{{ event.title }}</td>
-          <td>{{ event.date }}</td>
-          <td>{{ event.location }}</td>
-          <td>{{ event.description }}</td>
-          <td>{{ event.status }}</td>
-          <td>
-            <button (click)="editEvent(event)">Edit</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card">
+      <div class="card-header">
+        <h3>Event List</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let event of events">
+              <td>{{ event.title }}</td>
+              <td>{{ event.date }}</td>
+              <td>{{ event.location }}</td>
+              <td>{{ event.description }}</td>
+              <td>{{ event.status }}</td>
+              <td>
+                <button class="btn btn-warning" (click)="editEvent(event)">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <div *ngIf="showTasks">
-    <h2>Tasks</h2>
+    <h2 class="text-center mb-4">Manage Tasks</h2>
 
-    <form (ngSubmit)="createTask()">
-      <h3>Create New Task</h3>
-      <label>
- Description:
- <input [(ngModel)]="newTask.description" name="description" required>
- </label><br>
- <label>
- Status:
- <select [(ngModel)]="newTask.status" name="status" required>
- <option value="Pending">Pending</option>
- <option value="Completed">Completed</option>
- </select>
- </label><br>
- <label>
- Assigned Staff:
- <select [(ngModel)]="newTask.assignedStaff" name="assignedStaff" required>
- <option *ngFor="let staff of staffs" [value]="staff.id">{{ staff.username }}</option>
- </select>
- </label><br>
- <button type="submit">Create Task</button>
- </form>
 
- <h2>Task List</h2>
- <table>
- <thead>
- <tr>
- <th>Description</th>
- <th>Status</th>
- </tr>
- </thead>
- <tbody>
- <tr *ngFor="let task of tasks">
- <td>{{ task.description }}</td>
- <td>{{ task.status }}</td>
- </tr>
- </tbody>
- </table>
- </div>
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3>Create Task</h3>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="createTask()">
+          <div class="form-group">
+            <label>Description:</label>
+            <input [(ngModel)]="newTask.description" name="description" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Status:</label>
+            <input [(ngModel)]="newTask.status" name="status" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <select [(ngModel)]="newTask.assignedStaff" name="role" id="role" class="form-control" required>
+              <option value="" disabled selected>Select Staff to assign</option>
+
+              <option *ngFor="let staff of staffs" [ngValue]="staff">
+                {{ staff.username }}
+              </option>            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Create Task</button>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Task List</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks">
+              <td>{{ task.description }}</td>
+              <td>{{ task.status }}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

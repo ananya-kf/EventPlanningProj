@@ -33,4 +33,10 @@ export class RegisterComponent {
       }
     );
   }
+
+  onClick(){
+    this.router.navigate(['/login']);
+  }
+
+ 
 }

@@ -61,7 +61,7 @@ form select {
   box-sizing: border-box;
 }
 
-form button {
+/* form button {
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
@@ -72,7 +72,7 @@ form button {
 
 form button:hover {
   background-color: #0056b3;
-}
+} */
 
 table {
   width: 100%;
