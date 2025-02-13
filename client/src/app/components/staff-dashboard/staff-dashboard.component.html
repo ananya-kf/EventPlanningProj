@@ -1,12 +1,26 @@
-<div class="container mt-4 p-4">
-  <h2 class="text-center">Staff Dashboard</h2>
-  <div class="card">
-    <div class="card-header">
-      <h3>Tasks List</h3>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Staff Dashboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Staff Dashboard</h2>
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Tasks List</h3>
     </div>
     <div class="card-body">
-      <table class="table table-striped">
-        <thead>
+      <table class="table table-hover">
+        <thead class="thead-light">
           <tr>
             <th>Description</th>
             <th>Status</th>
@@ -17,7 +31,7 @@
           <tr *ngFor="let task of tasks">
             <td>{{ task.description }}</td>
             <td>
-              <span *ngIf="task.status === 'Completed'" class="text-success">Completed</span>
+              <span *ngIf="task.status === 'Completed'" class="text-success font-weight-bold">Completed</span>
               <span *ngIf="task.status !== 'Completed'">{{ task.status }}</span>
             </td>
             <td>
@@ -33,20 +47,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!-- Container div with margin and padding for layout.
-Centered heading for the staff dashboard title.
-Card component to contain and style the tasks section.
-Card header with a heading for the tasks list.
-Table structure for displaying tasks in a tabular format.
-Table headers for task description, status, and available actions.
-Loop through the list of tasks using Angular's *ngFor directive.
-Display task description in a table cell.
-Display task status in a table cell.
-Conditional rendering:
-Show a button to mark the task as completed if the task status is not "completed."
-Button triggers a method to update the task status.
-If the task is already completed, display "Completed" with a green text color. -->

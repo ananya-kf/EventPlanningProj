@@ -1,8 +1,10 @@
 package com.wecp.event_management_system.controllers;
 
+import com.wecp.event_management_system.entities.Staff;
 import com.wecp.event_management_system.entities.Task;
 //import com.wecp.event_management_system.services.TaskService;
 import com.wecp.event_management_system.services.TaskService;
+import com.wecp.event_management_system.services.UserService;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,8 @@ import java.util.List;
 public class StaffController {
    @Autowired
    private TaskService taskService;
-
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/tasks/{staffId}")
     public ResponseEntity<List<Task>> getTasks(@PathVariable Long staffId) {
@@ -27,6 +30,11 @@ public class StaffController {
     }
        // get assigned tasks for the staff with the given staffId and return with status code 200 ok
     
+       @GetMapping("/all")
+       public ResponseEntity<List<Staff>> getAllStaff()
+       {
+         return ResponseEntity.ok(userService.getAllStaff());
+       }
 
     @PutMapping("/tasks/{taskId}")
     public ResponseEntity<Task> updateTaskStatus(@PathVariable Long taskId, @RequestParam String status) {

@@ -3,6 +3,7 @@ import { StaffService } from '../../services/staff.service';
 import { Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-staff-dashboard',
@@ -19,7 +20,7 @@ export class StaffDashboardComponent implements OnInit {
   staffId: string | undefined;
 
   // Injecting the StaffService into the component
-  constructor(private staffService: StaffService) {
+  constructor(private staffService: StaffService,private router:Router) {
     // Retrieve the staff ID from local storage if available
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId !== null) {
@@ -49,6 +50,13 @@ export class StaffDashboardComponent implements OnInit {
       console.error('Staff ID is not available'); // Log an error if the staff ID is not available
     }
   }
+
+    logout() {
+  localStorage.setItem('token', '');
+  localStorage.setItem('userId', '');
+  this.router.navigate(['/login']);
+ }
+
 
   // Method to update the status of a specific task
   updateTaskStatus(taskId: any, status: string) {

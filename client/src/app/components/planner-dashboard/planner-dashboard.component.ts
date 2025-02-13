@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClientService } from '../../services/client.service';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { HttpClientModule } from '@angular/common/http';
 
 import { StaffService } from '../../services/staff.service';
 import { User } from '../../models/user.model';
@@ -64,7 +64,6 @@ export class PlannerDashboardComponent implements OnInit {
   }
 
   updateEvent() {
-    console.log("HIIIII")
     if (this.selectedEvent && this.selectedEvent.id) {
       this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(
         response => {
@@ -117,7 +116,6 @@ console.error('Error fetching tasks:', error);
 }
 
 editEvent(event: Event) {
-  console.log('ahhhai')
 this.selectedEvent = { ...event };
 this.showEvents = true;
 this.showTasks = false;
