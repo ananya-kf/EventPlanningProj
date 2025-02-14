@@ -1,5 +1,45 @@
 /* Optional custom styles */
-.card {
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3674b7;
+    height: 50px;
+}
+
+.logo {
+    color: white;
+    margin-bottom: 4px;
+    margin-left: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin-right: 50px;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 35px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* .background-image {
+  background-image: url(https://www.garblecloud.com/wp-content/uploads/2023/01/Untitled-design-91.png);
+  background-size: cover;
+  background-position: center;
+  
+} */
+
+/* .card {
   border: 1px solid #ddd;
   border-radius: 8px;
 }
@@ -47,4 +87,61 @@ a {
 .form-group{
   margin: 10px;
 }
+ */
 
+
+ .card {
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   transition: transform 0.3s, box-shadow 0.3s;
+ }
+ 
+ .card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .card-header {
+   background-color: #3674b7;
+   color: white;
+   border-bottom: 1px solid #ddd;
+   border-top-left-radius: 8px;
+   border-top-right-radius: 8px;
+   padding-top: 20px;
+ }
+ 
+ .card-body {
+   padding: 2rem;
+ }
+ 
+ .btn-primary {
+   background-color: #007bff;
+   border-color: #007bff;
+   margin-left: 10px;
+   margin-top: 10px;
+ }
+ 
+ .btn-primary:hover {
+   background-color: #0056b3;
+   border-color: #004085;
+ }
+ 
+ .card-footer p {
+   margin-bottom: 0;
+ }
+ 
+ .card-footer a {
+   color: #007bff;
+ }
+ 
+ .card-footer a:hover {
+   color: #0056b3;
+ }
+ 
+ a {
+   cursor: pointer;
+ }
+ 
+ .form-group {
+   margin: 10px;
+ }

@@ -40,8 +40,9 @@
 
 .left-section {
     flex: 1;
-    padding: 20px;
-    margin-left: 120px;
+    /* padding: 20px; */
+    margin-left: 140px;
+    /* width: 200px; */
 }
 
 h1{
@@ -49,22 +50,27 @@ h1{
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
+  margin-top: 60px;
 }
 
 .highlight{
   color: #5186CF;
 }
 
-
-
-.info-button:hover {
-    background-color: #0056b3;
-    color: white;
+.img img{
+    margin-left: 90px;
+    margin-bottom: 20px;
 }
+
+/* .left-text{
+    padding-top: 20px;
+    margin-top: 50px;
+} */
+
 
 .login-container {
     flex: 1;
-    max-width: 400px;
+    max-width: 350px;
     margin: 0 auto;
 }
 
@@ -72,11 +78,11 @@ h1{
     border: 1px solid #ddd;
     border-radius: 8px;
     margin: 4rem auto;
-    margin-right: 120px;
+    margin-right: 180px;
 }
 
 .card-header {
-    background-color: #007bff;
+    background-color: #5186CF;
     color: white;
     border-bottom: 1px solid #ddd;
     border-top-left-radius: 8px;
