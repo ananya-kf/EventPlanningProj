@@ -34,7 +34,7 @@
             <td>{{ event.description }}</td>
             <td>{{ event.status }}</td>
             <td>
-              <div class="input-group">
+              <div *ngIf="event.status === 'Completed'" class="input-group">
                 <input #feedbackInput type="text" class="form-control" placeholder="Provide feedback">
                 <div class="input-group-append">
                   <button
@@ -43,6 +43,9 @@
                     Submit Feedback
                   </button>
                 </div>
+              </div>
+              <div *ngIf="event.status !== 'Completed'">
+                <span class="text-muted">Feedback available upon completion</span>
               </div>
             </td>
           </tr>

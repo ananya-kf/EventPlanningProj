@@ -36,7 +36,7 @@
             </td>
             <td>
               <button *ngIf="task.status !== 'Completed'" (click)="updateTaskStatus(task.id, 'Completed')" class="btn btn-success btn-sm">Mark as Completed</button>
-              <button *ngIf="task.status !== 'In Progress'" (click)="updateTaskStatus(task.id, 'In Progress')" class="btn btn-primary btn-sm">Mark as In Progress</button>
+              <!-- <button *ngIf="task.status !== 'In Progress'" (click)="updateTaskStatus(task.id, 'In Progress')" class="btn btn-primary btn-sm">Mark as In Progress</button> -->
             </td>
           </tr>
         </tbody>

@@ -62,7 +62,7 @@ export class PlannerDashboardComponent implements OnInit {
       }
     );
   }
-//Changed
+
   updateEvent() {
     if (this.selectedEvent && this.selectedEvent.id) {
       this.plannerService.updateEvent(this.selectedEvent, this.selectedEvent.id).subscribe(
@@ -92,6 +92,7 @@ console.error('Error fetching events:', error);
 }
 
 createTask() {
+  console.log(this.newTask)
 this.plannerService.createTask(this.newTask).subscribe(
 response => {
 console.log('Task created successfully:', response);

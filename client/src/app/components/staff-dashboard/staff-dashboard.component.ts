@@ -37,8 +37,9 @@ export class StaffDashboardComponent implements OnInit {
   getTasks() {
     if (this.staffId) {
       this.staffService.getTasks(this.staffId).subscribe(
-        (tasks: Task[]) => {
-            this.tasks =tasks;
+        (task: Task[]) => {
+            this.tasks =task;
+            this.tasks = this.tasks.sort((a,b)=> b.status.localeCompare(a.status));
         },
         (error) => {
           console.error('Error fetching tasks', error);
