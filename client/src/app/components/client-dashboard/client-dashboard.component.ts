@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 export class ClientDashboardComponent implements OnInit {
 [x: string]: any;
   events: Event[] = [];
+  feedbackoptions: string[] = ['Very Bad', 'Bad', 'Satisfactory', 'Good', 'Best'];  
+  ratingOptions: number[] = [1, 2, 3, 4, 5];
 
   constructor(private clientService: ClientService, private router:Router) { }
 
@@ -43,6 +45,17 @@ export class ClientDashboardComponent implements OnInit {
       }
     );
   }
+
+
+// openFeedbackDialog() {
+//     const dialogRef = this.dialog.open(FeedbackDialogComponent);
+
+//     dialogRef.afterClosed().subscribe(result => {
+//       console.log('The dialog was closed');
+//     });
+//   }
+
+
   logout() {
     localStorage.setItem('token', '');
     localStorage.setItem('userId', '');

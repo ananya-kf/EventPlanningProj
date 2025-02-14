@@ -1,0 +1,93 @@
+/* Navbar */
+.navbar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.btn-outline-danger {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 15px;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Table */
+.table {
+  margin-bottom: 0;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group .form-control {
+  border-radius: 5px 0 0 5px;
+}
+
+.input-group .btn {
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.input-group .btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Feedback Message */
+.text-muted {
+  font-style: italic;
+  color: #6c757d;
+}

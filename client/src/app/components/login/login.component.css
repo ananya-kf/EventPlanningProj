@@ -1,49 +1,146 @@
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: 4rem auto;
-  
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3674b7;
+    height: 50px;
+}
 
+.logo {
+    color: white;
+    margin-bottom: 4px;
+    margin-left: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin-right: 50px;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 35px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.left-section {
+    flex: 1;
+    padding: 20px;
+    margin-left: 120px;
+}
+
+h1{
+  color: #74CDEF;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.highlight{
+  color: #5186CF;
+}
+
+
+
+.info-button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.login-container {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 4rem auto;
+    margin-right: 120px;
 }
 
 .card-header {
-  background-color: #007bff;
-  color: white;
-  border-bottom: 1px solid #ddd;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 1rem;
+    text-align: center;
 }
 
 .card-body {
-  padding: 2rem;
+    padding: 2rem;
 }
 
-
-.button-container{
-  display: flex;
-  margin-top: 20px;
-  /* gap: 2px; */
+.button-container {
+    display: flex;
+    margin-top: 20px;
 }
+
 .btn-primary {
-  display: inline-block;
-  background-color: #007bff;
-  border-color: #007bff;
-   margin-right: 10px; 
-   margin-left: 10px;
-   /* margin-top: 20px; */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
 }
 
 .form-group {
-  margin: 10px;
+    margin: 10px 0;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.error {
+    color: red;
+    font-size: 0.875rem;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
 }
 
 a {
-  cursor: pointer;
+    cursor: pointer;
 }
-
+ 
