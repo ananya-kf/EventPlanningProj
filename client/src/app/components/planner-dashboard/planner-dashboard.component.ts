@@ -91,6 +91,21 @@ console.error('Error fetching events:', error);
 );
 }
 
+ updateTaskStatus(taskId: any, status: string) {
+  // Call staffService to update the status of the specified task and handle response
+  this.staffService.updateTaskStatus(taskId, status).subscribe(
+   (response) => {
+    console.log('Task status updates', response);
+    this.getTasks();
+   },
+   (error) => {
+    console.error('Error updating task status', error);
+   }
+  );
+  
+ }
+
+
 createTask() {
   console.log(this.newTask)
 this.plannerService.createTask(this.newTask).subscribe(

@@ -1,5 +1,6 @@
 package com.wecp.event_management_system.services;
 
+import com.wecp.event_management_system.Exceptions.UserAlreadyExists;
 // UserService.java
 import com.wecp.event_management_system.entities.Client;
 import com.wecp.event_management_system.entities.EventPlanner;
@@ -39,6 +40,11 @@ public class UserService implements UserDetailsService {
 
     public User registerUser(User user) {
         User newUser;
+        User newOne = userRepository.findByUsername(user.getUsername());
+        if(newOne != null)
+        {
+            throw new UserAlreadyExists("User Already Exists");
+        }
         switch (user.getRole()) {
             case "PLANNER":
                 newUser = new EventPlanner();

@@ -22,6 +22,11 @@ export class ClientDashboardComponent implements OnInit {
     this.getEvents();
   }
 
+ gotoHome()
+ {
+  this.router.navigateByUrl('/home');
+ }
+
   getEvents() {
     this.clientService.getEvents().subscribe(
       response => {

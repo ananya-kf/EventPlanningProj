@@ -1,74 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-image: url('images.jpg'); /* Replace 'background.jpg' with your image path */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .login-container {
-      background-color: rgba(255, 255, 255, 0.9); /* Add transparency to the card */
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .error{
-      color: red;
-      margin-top: 10px;
-    }
-    .button-container {
-      display: flex;
-      justify-content: space-between;
-    }
-  </style>
-  <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
 </head>
-<body>
+    <nav class="navbar ">
+        <div class="logo">SAMAC</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+    </nav>
+<div class="main-content">
+    <div class="left-section">
+        <div>
+            <h1>Let <span class="highlight">planning</span> lead the way.</h1>
+        </div>
+        <div>
+            <img src='https://echoescreative.com/wp-content/uploads/2023/03/Untitled-design-2.gif'>
+        </div>
 
-  <div class="card login-container">
-    <div class="card-header text-center">
-      <h2>Login</h2>
     </div>
-    <div class="card-body">
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-group">
-          <label for="username">Username:</label>
-          <input id="username" type="text" formControlName="username" class="form-control" />
-          <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="error">
-            <div *ngIf="loginForm.get('username')?.hasError('required')" >Username is required</div>
-            <div *ngIf="loginForm.get('username')?.hasError('pattern')" >Username is invalid</div>
-          </div>
+    <div class="card login-container">
+        <div class="card-header text-center">
+            <h2>Login</h2>
         </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input id="password" type="password" formControlName="password" class="form-control" />
-          <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error">
-            <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
-            <div *ngIf="loginForm.get('password')?.hasError('pattern')">Password is invalid</div>
-          </div>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input id="username" type="text" formControlName="username" class="form-control" />
+                    <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="error">
+                        <div *ngIf="loginForm.get('username')?.hasError('required')">Username is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password" formControlName="password" class="form-control" />
+                    <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error">
+                        <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+                        <div *ngIf="loginForm.get('password')?.hasError('pattern')">Password is invalid</div>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+                    <button type="button" (click)="goToRegister()" class="btn btn-secondary">Register</button>
+                </div>
+                <div *ngIf="errorMessage" class="error-message">
+                    {{ errorMessage }}
+                </div>
+            </form>
         </div>
-<div class="button-container">
-<button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
-<button type="button" (click)="goToRegister()" class="btn btn-secondary">Register</button>
-</div>
-<div *ngIf="errorMessage" class="error-message">
-{{ errorMessage }}
-</div>
-</form>
-</div>
-</div>
+    </div>
+    </div>
+   
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
 </html>
+ 

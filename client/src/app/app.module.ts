@@ -10,10 +10,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { httpClientProviders } from './http-client-providers';
 import { StaffDashboardComponent } from './components/staff-dashboard/staff-dashboard.component';
 import { PlannerDashboardComponent } from './components/planner-dashboard/planner-dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

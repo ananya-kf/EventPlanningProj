@@ -158,13 +158,16 @@
             <tr>
               <th>Description</th>
               <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let task of tasks">
               <td>{{ task.description }}</td>
               <td>{{ task.status }}</td>
-
+              <td>
+               <button *ngIf="task.status !== 'In Progress'" (click)="updateTaskStatus(task.id, 'In Progress')" class="btn btn-primary btn-sm">Mark as In Progress</button>
+              </td>
             </tr>
           </tbody>
         </table>
