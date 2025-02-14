@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StaffService } from '../../services/staff.service';
 import { User } from '../../models/user.model';
+import { Token } from '@angular/compiler';
 @Component({
   selector: 'app-planner-dashboard',
   templateUrl: './planner-dashboard.component.html',
@@ -20,7 +21,7 @@ import { User } from '../../models/user.model';
 
 export class PlannerDashboardComponent implements OnInit {
 
-
+  username!:string | null;
   taskForm!:FormGroup;
   showEvents: boolean = true;
   showTasks: boolean = false;
@@ -32,11 +33,11 @@ export class PlannerDashboardComponent implements OnInit {
     date: new Date(),
     location: '',
     description: '',
-    status: ''
+    status: 'In Progress'
   };
   newTask: Task = {
     description: '',
-    status: '',
+    status: 'In Progress',
     assignedStaff:''
   };
   selectedEvent: Event | null = null;
@@ -44,6 +45,7 @@ export class PlannerDashboardComponent implements OnInit {
   constructor(private plannerService: PlannerService,private staffService:StaffService, private router: Router) { }
 
   ngOnInit() {
+    this.username = localStorage.getItem('username');
     this.getEvents();
     this.getTasks();
     this.getStaff();

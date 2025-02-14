@@ -3,12 +3,22 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a (click)="gotoHome()" >Home</a>
   <div class="collapse navbar-collapse" id="navbarNav">
-  
-    <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item d-flex align-items-center">
+        <div class="profile-circle d-flex align-items-center justify-content-center">
+          <i class="bi bi-person"></i>
+        </div>
+        <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
+      </li>
+    </ul>
   </div>
 </nav>
+
+
 <div class="container mt-5">
   <h2 class="text-center mb-4">Client Dashboard</h2>
 

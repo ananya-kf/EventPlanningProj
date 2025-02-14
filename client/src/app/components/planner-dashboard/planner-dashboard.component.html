@@ -4,17 +4,26 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" (click)="navigateTo('manage-events')">Manage Events</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="navigateTo('manage-tasks')">Manage Tasks</a>
       </li>
+      <li class="nav-item d-flex align-items-center">
+        <div class="profile-circle d-flex align-items-center justify-content-center">
+          <i class="bi bi-person"></i>
+        </div>
+        <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
+      </li>
     </ul>
-    <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
   </div>
 </nav>
+
 
 <div class="container mt-5">
   <div *ngIf="showEvents">
@@ -42,13 +51,13 @@
             <label>Description:</label>
             <input [(ngModel)]="newEvent.description" name="description" class="form-control" required>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
            <label>Status:</label>
            <select [(ngModel)]="newEvent.status" name="status" class="form-control" required>
             <option value="Pending">Pending</option>
             <option value="Completed">Completed</option>
            </select>
-          </div>
+          </div> -->
             <br>
           <button type="submit" class="btn btn-primary">Create Event</button>
         </form>
@@ -127,13 +136,13 @@
             <label>Description:</label>
             <input [(ngModel)]="newTask.description" name="description" class="form-control" required>
           </div>
-     <div class="form-group">
+     <!-- <div class="form-group">
       <label>Status:</label>
       <select [(ngModel)]="newTask.status" name="status" class="form-control" required>
       <option value="In Progress">Pending</option>
       <option value="Completed">Completed</option>
       </select>
-     </div>
+     </div> -->
 
           <div class="form-group">
             <label >Staff:</label>
@@ -158,16 +167,12 @@
             <tr>
               <th>Description</th>
               <th>Status</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let task of tasks">
               <td>{{ task.description }}</td>
               <td>{{ task.status }}</td>
-              <td>
-               <button *ngIf="task.status !== 'In Progress'" (click)="updateTaskStatus(task.id, 'In Progress')" class="btn btn-primary btn-sm">Mark as In Progress</button>
-              </td>
             </tr>
           </tbody>
         </table>

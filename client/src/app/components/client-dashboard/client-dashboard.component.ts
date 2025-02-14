@@ -15,10 +15,12 @@ import { Router } from '@angular/router';
 export class ClientDashboardComponent implements OnInit {
 [x: string]: any;
   events: Event[] = [];
+  username!:string | null;
 
   constructor(private clientService: ClientService, private router:Router) { }
 
   ngOnInit() {
+    this.username = localStorage.getItem('username');
     this.getEvents();
   }
 

@@ -33,6 +33,7 @@ export class LoginComponent {
     {
      localStorage.setItem('token', response.token);
      localStorage.setItem('userId', response.userId);
+     localStorage.setItem('username',response.username);
 
      switch (response.role) {
       case 'PLANNER':

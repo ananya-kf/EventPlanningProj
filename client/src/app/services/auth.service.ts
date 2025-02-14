@@ -24,12 +24,10 @@ export class AuthService {
 
   isTokenExpired(token: string): Observable<boolean> {
     try {
-     // const decodedToken: any = jwt_decode(token);
-     // const expirationDate = new Date(decodedToken.exp * 1000);
-      const isExpired = false;// expirationDate < new Date();
+      const isExpired = false;
       return of(isExpired);
     } catch (error) {
-      return of(true); // Token is invalid or some error occurred
+      return of(true);
     }
   }
 }

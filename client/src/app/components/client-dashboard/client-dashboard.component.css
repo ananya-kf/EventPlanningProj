@@ -1,0 +1,19 @@
+
+.navbar-nav.ml-auto {
+ margin-left: auto;
+}
+.profile-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.navbar
+{
+    margin-right: 15px;
+    margin-left:  15px;
+}
