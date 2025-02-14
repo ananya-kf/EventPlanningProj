@@ -1,25 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Client Dashboard</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item d-flex align-items-center">
-        <div class="profile-circle d-flex align-items-center justify-content-center">
-          <i class="bi bi-person"></i>
-        </div>
-        <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
-      </li>
-    </ul>
-  </div>
+ <a class="navbar-brand" href="#">Client Dashboard</a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav ml-auto">
+   <li class="nav-item d-flex align-items-center">
+    <div class="profile-circle d-flex align-items-center justify-content-center">
+     <i class="bi bi-person"></i>
+    </div>
+    <span class="nav-link" *ngIf="username">Hi {{ username | titlecase }}</span>
+   </li>
+   <li class="nav-item">
+    <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">Logout</button>
+   </li>
+  </ul>
+ </div>
 </nav>
 
-
 <div class="container mt-5">
+
   <h2 class="text-center mb-4">Client Dashboard</h2>
 
   <div class="card">
@@ -46,20 +46,35 @@
             <td>{{ event.description }}</td>
             <td>{{ event.status }}</td>
             <td>
-              <div *ngIf="event.status === 'Completed'" class="input-group">
-                <input #feedbackInput type="text" class="form-control" placeholder="Provide feedback">
-                <div class="input-group-append">
-                  <button
-                    class="btn btn-primary"
-                    (click)="provideFeedback(event.id, feedbackInput.value)">
-                    Submit Feedback
-                  </button>
-                </div>
-              </div>
-              <div *ngIf="event.status !== 'Completed'">
-                <span class="text-muted">Feedback available upon completion</span>
-              </div>
-            </td>
+  <div *ngIf="event.status === 'Completed'; else notCompleted">
+    <div *ngIf="!event.feedback; else feedbackPresent">
+      <div class="input-group">
+        <input #feedbackInput type="text" class="form-control" placeholder="Provide feedback">
+        <select #ratingSelect class="form-control ml-2">
+          <option value="" disabled selected>Rate</option>
+          <option value="Very Bad">Very Bad</option>
+          <option value="Bad">Bad</option>
+          <option value="Satisfactory">Satisfactory</option>
+          <option value="Good">Good</option>
+          <option value="Best">Best</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-primary"
+             (click)="submitFeedback(feedbackInput, ratingSelect, event.id)">
+            Submit Feedback
+          </button>
+        </div>
+      </div>
+    </div>
+    <ng-template #feedbackPresent>
+      {{ event.feedback }}
+    </ng-template>
+  </div>
+  <ng-template #notCompleted>
+    <span class="text-muted">Feedback available upon completion</span>
+  </ng-template>
+</td>
+
           </tr>
         </tbody>
       </table>

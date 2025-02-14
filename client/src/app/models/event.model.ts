@@ -5,4 +5,5 @@ export interface Event {
   location: string;
   description: string;
   status: string;
+  feedback:string;
 }

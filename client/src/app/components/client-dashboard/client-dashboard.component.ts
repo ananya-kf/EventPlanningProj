@@ -13,21 +13,17 @@ import { Router } from '@angular/router';
   imports: [CommonModule, FormsModule]
 })
 export class ClientDashboardComponent implements OnInit {
-[x: string]: any;
   events: Event[] = [];
   username!:string | null;
+  feedbackOptions: string[] = ['Very Bad', 'Bad', 'Satisfactory', 'Good', 'Best'];  
+  ratingOptions: number[] = [1, 2, 3, 4, 5];
 
-  constructor(private clientService: ClientService, private router:Router) { }
+  constructor(private clientService: ClientService, private router: Router) { }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
     this.getEvents();
   }
-
- gotoHome()
- {
-  this.router.navigateByUrl('/home');
- }
 
   getEvents() {
     this.clientService.getEvents().subscribe(
@@ -40,16 +36,25 @@ export class ClientDashboardComponent implements OnInit {
     );
   }
 
-  provideFeedback(eventId: any, feedback: string) {
-    this.clientService.provideFeedback(eventId, feedback).subscribe(
-      response => {
-        console.log('Feedback submitted successfully:', response);
-      },
-      error => {
-        console.error('Error submitting feedback:', error);
-      }
-    );
+  submitFeedback(feedbackInput: HTMLInputElement, ratingSelect: HTMLSelectElement, eventId: any) {
+    const feedback = feedbackInput.value;
+    const rating = ratingSelect.value;
+    if (feedback && rating) {
+      this.clientService.provideFeedback(eventId,feedback+rating).subscribe(
+        response => {
+        },
+      
+      );
+    }
+    alert('Feedback submitted successfully');
+    this.clearFeedbackForm(feedbackInput, ratingSelect);
   }
+
+  clearFeedbackForm(feedbackInput: HTMLInputElement, ratingSelect: HTMLSelectElement) {
+    feedbackInput.value = '';
+    ratingSelect.value = '';
+  }
+
   logout() {
     localStorage.setItem('token', '');
     localStorage.setItem('userId', '');

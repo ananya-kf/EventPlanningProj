@@ -33,7 +33,8 @@ export class PlannerDashboardComponent implements OnInit {
     date: new Date(),
     location: '',
     description: '',
-    status: 'In Progress'
+    status: 'In Progress',
+    feedback: ''
   };
   newTask: Task = {
     description: '',
@@ -57,7 +58,7 @@ export class PlannerDashboardComponent implements OnInit {
       response => {
         console.log('Event created successfully:', response);
         this.getEvents();
-        this.newEvent = { title: '', date: new Date(), location: '', description: '', status: '' };
+        this.newEvent = { title: '', date: new Date(), location: '', description: '', status: 'Pending' ,feedback: ''};
       },
       error => {
         console.error('Event creation error:', error);

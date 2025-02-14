@@ -104,6 +104,7 @@
               <th>Location</th>
               <th>Description</th>
               <th>Status</th>
+              <th>Feedback</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -114,6 +115,7 @@
               <td>{{ event.location }}</td>
               <td>{{ event.description }}</td>
               <td>{{ event.status }}</td>
+              <td>{{event.feedback}}</td>
               <td>
                 <button class="btn btn-warning" (click)="editEvent(event)">Edit</button>
               </td>
