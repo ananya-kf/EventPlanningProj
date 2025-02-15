@@ -40,8 +40,9 @@ export class ClientDashboardComponent implements OnInit {
     const feedback = feedbackInput.value;
     const rating = ratingSelect.value;
     if (feedback && rating) {
-      this.clientService.provideFeedback(eventId,feedback+rating).subscribe(
+      this.clientService.provideFeedback(eventId,feedback).subscribe(
         response => {
+          this.getEvents();
         },
       
       );
