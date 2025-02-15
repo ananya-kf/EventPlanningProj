@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class ClientDashboardComponent implements OnInit {
   events: Event[] = [];
   username!:string | null;
+  searchTerm!:string;
   feedbackOptions: string[] = ['Very Bad', 'Bad', 'Satisfactory', 'Good', 'Best'];  
   ratingOptions: number[] = [1, 2, 3, 4, 5];
 
@@ -34,6 +35,21 @@ export class ClientDashboardComponent implements OnInit {
         console.error('Error fetching events:', error);
       }
     );
+  }
+  
+  searchEvents(event:any)
+  {
+    this.searchTerm = event.target.value.trim().toLowerCase();
+    if(!this.searchTerm)
+    {
+      this.getEvents();
+    }
+    else
+    {
+      this.events = this.events.filter((data)=>{
+        return data.title.toLowerCase().includes(this.searchTerm);
+      })
+    }
   }
 
   submitFeedback(feedbackInput: HTMLInputElement, ratingSelect: HTMLSelectElement, eventId: any) {

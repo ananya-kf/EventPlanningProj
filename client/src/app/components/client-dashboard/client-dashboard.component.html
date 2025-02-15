@@ -20,13 +20,20 @@
 
 <div class="container mt-5">
 
-  <h2 class="text-center mb-4">Client Dashboard</h2>
+  <!-- <h2 class="text-center mb-4">Client Dashboard</h2> -->
 
   <div class="card">
     <div class="card-header">
       <h3>Events</h3>
     </div>
     <div class="card-body">
+            <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search events" (input)="searchEvents($event)">
+        <!-- <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="searchEvents()">Search</button>
+        </div> -->
+      </div>
+
       <table class="table table-striped">
         <thead>
           <tr>
