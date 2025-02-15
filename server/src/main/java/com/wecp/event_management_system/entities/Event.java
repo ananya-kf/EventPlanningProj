@@ -27,6 +27,10 @@ public class Event {
     @JoinColumn(name = "planner_id", nullable = false)
     private EventPlanner planner;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id",nullable = false)
+    private Client client;
+
     public Long getId() {
         return id;
     }
@@ -90,5 +94,14 @@ public class Event {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+    
 }
 

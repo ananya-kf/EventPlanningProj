@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Event } from '../models/event.model';
 import { environment } from '../../environments/environment';
 import { Task } from '../models/task.model';
+import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,14 +15,18 @@ export class ClientService {
  
   constructor(private http: HttpClient) { }
  
-  getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.baseUrl}/events`);
+  getEvents(clientId: string): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/${clientId}`);
   }
  
   provideFeedback(eventId: string, feedback: string): Observable<any> {
     return this.http.put(`${this.baseUrl}/event/${eventId}?feedback=${feedback}`, {});
   }
- 
+   
+  getClient(): Observable<User[]>
+  {
+    return this.http.get<User[]>(`${this.baseUrl}/all`);
+  }
 }
 
 

@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class ClientDashboardComponent implements OnInit {
   events: Event[] = [];
   username!:string | null;
+  userId!:string | null;
   searchTerm!:string;
   feedbackOptions: string[] = ['Very Bad', 'Bad', 'Satisfactory', 'Good', 'Best'];  
   ratingOptions: number[] = [1, 2, 3, 4, 5];
@@ -23,18 +24,19 @@ export class ClientDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
+    this.userId = localStorage.getItem('userId');
     this.getEvents();
   }
 
   getEvents() {
-    this.clientService.getEvents().subscribe(
-      response => {
-        this.events = response;
-      },
-      error => {
-        console.error('Error fetching events:', error);
-      }
-    );
+    // this.clientService.getEvents().subscribe(
+    //   response => {
+    //     this.events = response;
+    //   },
+    //   error => {
+    //     console.error('Error fetching events:', error);
+    //   }
+    // );
   }
   
   searchEvents(event:any)

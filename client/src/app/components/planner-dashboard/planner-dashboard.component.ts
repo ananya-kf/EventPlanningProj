@@ -27,6 +27,7 @@ export class PlannerDashboardComponent implements OnInit {
   showTasks: boolean = false;
   events: Event[] = [];
   tasks: Task[] = [];
+  clients: User [] = [];
   staffs: User[]=[];
   newEvent: Event = {
     title: '',
@@ -34,7 +35,8 @@ export class PlannerDashboardComponent implements OnInit {
     location: '',
     description: '',
     status: 'In Progress',
-    feedback: ''
+    feedback: '',
+    assignedClient:''
   };
   newTask: Task = {
     description: '',
@@ -43,22 +45,23 @@ export class PlannerDashboardComponent implements OnInit {
   };
   selectedEvent: Event | null = null;
   selectedTask : Task| null = null;
-  constructor(private plannerService: PlannerService,private staffService:StaffService, private router: Router) { }
+  constructor(private plannerService: PlannerService,private staffService:StaffService, private router: Router,private clientService:ClientService) { }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
     this.getEvents();
     this.getTasks();
     this.getStaff();
+    this.getClients();
   }
 
   createEvent() {
     console.log(this.newEvent);
-    this.plannerService.createEvent(this.newEvent).subscribe(
+    this.plannerService.createEvent(this.newEvent,this.newEvent.assignedClient).subscribe(
       response => {
         console.log('Event created successfully:', response);
         this.getEvents();
-        this.newEvent = { title: '', date: new Date(), location: '', description: '', status: 'Pending' ,feedback: ''};
+        this.newEvent = { title: '', date: new Date(), location: '', description: '', status: 'In Progress' ,feedback: '',assignedClient:''};
       },
       error => {
         console.error('Event creation error:', error);
@@ -150,6 +153,16 @@ console.error('Error fetching events:', error);
 );
 
 }
+
+getClients() {
+  this.clientService.getClient().subscribe(
+  response => {
+  this.clients = response;
+  },
+  error => {
+  console.error('Error fetching events:', error);
+  }
+  );}
 logout() {
 localStorage.setItem('token', '');
 localStorage.setItem('userId', '');

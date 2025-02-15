@@ -73,6 +73,9 @@ public class UserService implements UserDetailsService {
     public List<Staff> getAllStaff() {
         return staffRepository.findAll();
     }
+    public List<Client> getAllClient() {
+        return clientRepository.findAll();
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);

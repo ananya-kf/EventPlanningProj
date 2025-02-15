@@ -21,10 +21,10 @@ public class PlannerController {
 private EventService eventService;
 @Autowired
 private TaskService taskService;
-    @PostMapping("/event")
-    public ResponseEntity<Event> createEvent(@RequestParam Long plannerId, @RequestBody Event event) {
+    @PostMapping("/event/{plannerId}/{clientId}")
+    public ResponseEntity<Event> createEvent(@PathVariable Long plannerId, @PathVariable Long clientId,@RequestBody Event event) {
        // create event and return the created event with status code 201 created
-       return ResponseEntity.status(201).body(eventService.createEvent(event, plannerId));
+       return ResponseEntity.status(201).body(eventService.createEvent(plannerId,clientId,event));
     }
 
     @PutMapping("/event/{id}")
@@ -33,8 +33,8 @@ private TaskService taskService;
         return ResponseEntity.ok(eventService.updateEvent(eventDetails, id));
     }
 
-    @GetMapping("/events")
-    public ResponseEntity<List<Event>> getEventsByPlanner(@RequestParam Long plannerId) {
+    @GetMapping("/events/{plannerId}")
+    public ResponseEntity<List<Event>> getEventsByPlanner(@PathVariable Long plannerId) {
         // retrieve all events of a planner with status code 200 ok
         return ResponseEntity.ok(eventService.getEventsByPlanner(plannerId));
     }

@@ -13,9 +13,9 @@ export class PlannerService {
 
   constructor(private http: HttpClient) {}
 
-  createEvent(event: Event): Observable<Event> {
+  createEvent(event: Event,clientId:any): Observable<Event> {
     const plannerId = localStorage.getItem('userId');
-    return this.http.post<Event>(`${this.baseUrl}/event?plannerId=${plannerId}`, event);
+    return this.http.post<Event>(`${this.baseUrl}/event/${plannerId}/${clientId}`, event);
   }
 
   updateEvent(event: Event, eventId: string): Observable<Event> {
@@ -28,7 +28,7 @@ export class PlannerService {
 
   getEvents(): Observable<Event[]> {
     const plannerId = localStorage.getItem('userId');
-    return this.http.get<Event[]>(`${this.baseUrl}/events?plannerId=${plannerId}`);
+    return this.http.get<Event[]>(`${this.baseUrl}/events/${plannerId}`);
   }
 
   createTask(task: Task): Observable<Task> {

@@ -8,4 +8,5 @@ import com.wecp.event_management_system.entities.Event;
 @Repository
 public interface EventRepository extends JpaRepository<Event,Long>{
     List<Event> findByplannerId(Long plannerId);
+    List<Event> findByclientId(Long clientId);
 }

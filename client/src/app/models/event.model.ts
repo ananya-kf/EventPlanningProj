@@ -6,4 +6,5 @@ export interface Event {
   description: string;
   status: string;
   feedback:string;
+  assignedClient:string | null;
 }
