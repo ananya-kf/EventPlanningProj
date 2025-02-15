@@ -55,11 +55,11 @@
 
 .left-heading{
   color: #74CDEF;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  margin-top: 60px;
-  margin-right: 90px;
+  margin-top: 70px;
+  margin-right: 100px;
 }
 
 .highlight{
@@ -67,9 +67,9 @@
 }
 
 .img img{
-    margin-left: 100px;
-    margin-bottom: 20px;
-    width: 60%;
+    margin-left: 30px;
+    margin-bottom: 40px;
+    width: 80%;
 }
 
  /* .login-container {
@@ -338,7 +338,7 @@ a {
     font-size: 2.5rem;
     font-weight: bold;
     color: #5186CF;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     /* text-transform: uppercase; */
     letter-spacing: 1px;
 }
@@ -399,7 +399,7 @@ a {
     font-size: 2.5rem;
     font-weight: bold;
     color: #0056b3;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }

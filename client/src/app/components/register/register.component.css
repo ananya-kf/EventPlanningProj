@@ -1,43 +1,18 @@
-/* Navbar */
-.navbar {
+/* Full Page Background */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.navbar .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.navbar .nav-links li {
-  display: inline;
-}
-
-.navbar .nav-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
-
-.navbar .nav-links a:hover {
-  color: #007bff;
 }
 
 /* Container */
 .container {
-  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+  padding: 50px 0;
 }
 
 /* Card */

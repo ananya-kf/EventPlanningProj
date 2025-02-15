@@ -1,8 +1,9 @@
+
     <nav class="navbar">
-        <div class="logo">EVENTUS</div>
+        <div class="logo">EventUs</div>
         <ul class="nav-links" style="display: flex; justify-content: flex-end;">
             <li><a href="#">Home</a></li>
-            <li><a href="#about-eventus">About eventus</a></li>
+            <li><a href="#about-samac">About EventUs</a></li>
             <li><a href="#">About Us</a></li>
             
             <li><a href="#contact">Contact</a></li>
@@ -12,7 +13,7 @@
         <div class="left-section">
             <div class="left-text">
                 
-                    <h2 class="left-heading">Let <span class="highlight">planning</span> lead <br>
+                    <h2 class="left-heading">Let <span class="highlight">planning</span> lead
                the way.</h2>
                 
             </div>
@@ -20,29 +21,42 @@
                <img src='https://i.pinimg.com/originals/50/78/a0/5078a05eb1b6847d93383eaa4c0ed500.gif'>
             </div>
         </div>
+
+
+        
             <div class="card login-container">
                 <div class="card-header text-center">
+                    <!-- <h5>Transform your Events</h5> -->
                     <h3 >Log into EventUs</h3>
                 </div>
                 <div class="card-body">
                     <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <!-- Username Field -->
                         <div class="form-group">
-                            <input id="username" placeholder="UserName" type="text" formControlName="username" class="form-control" />
+                            <!-- <label for="username" class="form-label">Username</label> -->
+                            <input id="username" placeholder="User Name" type="text" formControlName="username" class="form-control" />
                             <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="text-danger small">
                                 <div *ngIf="loginForm.get('username')?.hasError('required')">Username is required</div>
                             </div>
                         </div>
+        
+                        <!-- Password Field -->
                         <div class="form-group">
+                            <!-- <label for="password" class="form-label">Password</label> -->
                             <input id="password" type="password" placeholder="Password" formControlName="password" class="form-control" />
                             <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="text-danger small">
                                 <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
                                 <div *ngIf="loginForm.get('password')?.hasError('pattern')">Password is invalid</div>
                             </div>
                         </div>
+        
+                        <!-- Buttons -->
                         <div class="button-container">
                             <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
                             <button type="button" (click)="goToRegister()" class="btn btn-secondary">Register</button>
                         </div>
+        
+                        <!-- Error Message -->
                         <div *ngIf="errorMessage" class="error-message">
                             {{ errorMessage }}
                         </div>
@@ -50,17 +64,59 @@
                 </div>
             </div>
         </div>
-    <section id="about-eventus" class="about-section">
+        
+        
+         
+        <!-- <div class="card login-container">
+            <div class="card-header text-center">
+                <h2>Login</h2>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input id="username" type="text" formControlName="username" class="form-control" />
+                        <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="error">
+                            <div *ngIf="loginForm.get('username')?.hasError('required')">Username is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input id="password" type="password" formControlName="password" class="form-control" />
+                        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error">
+                            <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+                            <div *ngIf="loginForm.get('password')?.hasError('pattern')">Password is invalid</div>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+                        <button type="button" (click)="goToRegister()" class="btn btn-secondary">Register</button>
+                    </div>
+                    <div *ngIf="errorMessage" class="error-message">
+                        {{ errorMessage }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+    <!-- About Us Section -->
+    <!-- "https://t4.ftcdn.net/jpg/09/70/39/31/360_F_970393157_43tQLYRWQG7JqiuZtUzB3ZNKINWWtVXC.jpg"
+    "https://cdn-icons-png.freepik.com/256/17591/17591821.png"
+    "https://career.costacrociere.it/wp-content/uploads/2024/10/12care.png" -->
+
+    <section id="about-samac" class="about-section">
         <div class="container text-center">
             <h2 class="section-title">About EventUs</h2>
             <div class="row">
+                <p>We cater to event planners, clients, and staff members and provide tools for efficient task management,<br> 
+                    real-time communication, and secure data handling.</p>
                 <div class="col-md-4">
                     <div class="about-card">
                         <div class="about-icon">
                             <img src="https://t4.ftcdn.net/jpg/09/70/39/31/360_F_970393157_43tQLYRWQG7JqiuZtUzB3ZNKINWWtVXC.jpg">
                         </div>
-                        <h3>Financial Advisory</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aut explicabo minima corrupti quo veniam sed culpa, asperiores deleniti iusto. Consequatur ratione dicta ut a ea expedita ab fuga sint.</p>
+                        <h3>Event Planners</h3>
+                        <p>Full access to event creation, task management, and communication tools.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -68,53 +124,72 @@
                         <div class="about-icon">
                             <img src="https://cdn-icons-png.freepik.com/256/17591/17591821.png" alt="Tax Advisory">
                         </div>
-                        <h3>Tax Advisory</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aut explicabo minima corrupti quo veniam sed culpa, asperiores deleniti iusto. Consequatur ratione dicta ut a ea expedita ab fuga sint.</p>
-                    </div>
+                        <h3>Client</h3>
+                        <p>View event progress, provide feedback, and communicate with planners.</p></div>
                 </div>
                 <div class="col-md-4">
                     <div class="about-card">
                         <div class="about-icon">
                             <img src="https://career.costacrociere.it/wp-content/uploads/2024/10/12care.png" alt="Risk Advisory">
                         </div>
-                        <h3>Risk Advisory</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aut explicabo minima corrupti quo veniam sed culpa, asperiores deleniti iusto. Consequatur ratione dicta ut a ea expedita ab fuga sint.</p>
-                    </div>
+                        <h3>Staff</h3>
+                        <p>Oversee specific tasks related to event preparation and execution.</p></div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Contact Section -->
+
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="row align-items-center">
+                <!-- Left Side: Business Info -->
                 <div class="col-lg-5 col-md-12">
-                    <h2 class="section-title">Business Hours</h2>
-                    <p class="section-subtitle">Let your audience know you're open for business!</p>
-                    <p class="business-hours">YOU CAN ADD YOUR BUSINESS HOURS HERE</p>
+                    <h2 class="section-title">Contact Us</h2>
+                    <p class="section-subtitle">Your Event, our Expertise. We're open for business!</p>
+                    <p class="business-hours">BUSINESS DETAILS</p>
     
                     <div class="location-info">
                         <i class="fas fa-map-marker-alt"></i>
                         <p>
-                            Let your audience know where to find you.<br>
-                            123 Anywhere St, Any City<br>
-                            ST 12345
+                            Plot No. EL-200, TTC Electronic Zone Shil Phata - Mahape Road Kopar Khairane, MIDC Industrial Area, Mahape, Navi Mumbai, Maharashtra 400710
+                            <br>
+                            308009
                         </p>
                     </div>
                     
                     <div class="location-info">
                         <i class="fas fa-map-marker-alt"></i>
                         <p>
-                            Let your audience know where to find you.<br>
-                            123 Anywhere St, Any City<br>
-                            ST 12345
+                            Candor Techspace, Block B, Industrial Area,<br>
+                            Sector 62, Noida, Uttar Pradesh<br> 
+                            110023
                         </p>
                     </div>
                 </div>
+    
+                <!-- Right Side: Google Map -->
                 <div class="col-lg-7 col-md-12">
                     <div class="map-container">
+                        <!-- <iframe 
+                            src="https://www.google.com/maps/d/embed?mid=1Z3C5Zt1cXrtbR2iJebsDCJDs7CQ&hl=en"
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen=""
+                            loading="lazy">
+                        </iframe> -->
+
                         <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d120662.97949019777!2d72.79525229889825!3d19.076127643682323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!3m2!1d19.0759837!2d72.8776559!4m5!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai!3m2!1d19.0759837!2d72.8776559!5e0!3m2!1sen!2sin!4v1739562327525!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
+
+
+    
+<!-- </body> -->
+<!-- </html> -->
